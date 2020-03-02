@@ -8,7 +8,7 @@
 """
 
 import unittest
-from app import list_copy, list_intersect
+from app import list_copy, list_intersect, list_difference, remove_vowels
 
 
 class ListTest(unittest.TestCase):
@@ -22,7 +22,20 @@ class ListTest(unittest.TestCase):
         """ testing list intersect """
         self.assertTrue(list_intersect([1, 2, 3], [1, 2, 4]) == [1, 2])
         self.assertTrue(list_intersect([1, 2, 3], [4, 5, 6]) == [])
+        self.assertTrue(list_intersect([1, 2, 3], [1, 2, 3]) == [1, 2, 3])
 
+    def test_list_difference(self):
+        """ testing list difference """
+        self.assertTrue(list_difference([1, 2, 3], [1, 2, 4]) == [3])
+        self.assertTrue(list_difference([1, 2, 3], [4, 5, 6]) == [1, 2, 3])
+        self.assertTrue(list_difference([1, 2, 3], [1, 2, 3]) == [])
+
+    def test_remove_vowels(self):
+        """ testing remove vowels """
+        self.assertTrue(remove_vowels("Amy is my favorite daughter") == "my favorite daughter")
+        self.assertTrue(remove_vowels('Jan is my best friend') == "Jan my best friend")
+        self.assertTrue(remove_vowels('This is a test string') == "This test string")
+        self.assertTrue(remove_vowels('And and Ever ever in In or Or url Url') == "")
 
 
 if __name__ == '__main__':
