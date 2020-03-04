@@ -8,7 +8,9 @@
 """
 
 import unittest
+
 from app import list_copy, list_intersect, list_difference, remove_vowels, check_pwd
+from app import DonutQueue
 
 
 class ListTest(unittest.TestCase):
@@ -43,6 +45,26 @@ class ListTest(unittest.TestCase):
         self.assertTrue(check_pwd("223dddAS"))
         self.assertFalse(check_pwd("1aaS"))
         self.assertFalse(check_pwd("aSS1"))
+
+
+class DonutQueueTest(unittest.TestCase):
+    """ Test class of the DonutQueue class """
+    def test_queue(self):
+        """ testing queue """
+        dq = DonutQueue()
+        self.assertIsNone(dq.next_customer())
+        dq.arrive("Sujit", False)
+        dq.arrive("Fei", False)
+        dq.arrive("Prof JR", True)
+        self.assertEqual(dq.waiting(), "Prof JR, Sujit, Fei")
+        dq.arrive("Nanda", True)
+        self.assertEqual(dq.waiting(), "Prof JR, Nanda, Sujit, Fei")
+        self.assertEqual(dq.next_customer(), "Prof JR")
+        self.assertEqual(dq.next_customer(), "Nanda")
+        self.assertEqual(dq.next_customer(), "Sujit")
+        self.assertEqual(dq.waiting(), "Fei")
+        self.assertEqual(dq.next_customer(), "Fei")
+        self.assertIsNone(dq.next_customer())
 
 
 if __name__ == '__main__':

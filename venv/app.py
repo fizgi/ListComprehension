@@ -5,7 +5,7 @@
     version: python 3.8.1
 """
 
-from typing import Any, List
+from typing import Any, List, Optional
 
 
 def list_copy(lst: List[Any]) -> List[Any]:
@@ -15,7 +15,6 @@ def list_copy(lst: List[Any]) -> List[Any]:
     copy: List[Any] = [item for item in lst]
 
     return copy  # return the copied list
-
 
 def list_intersect(lst1: List[Any], lst2: List[Any]) -> List[Any]:
     """ takes two lists as  parameters and returns
@@ -61,3 +60,44 @@ def check_pwd(password: str) -> bool:
 
     # return True when all conditions are met
     return start_digit and lower_count >= 1 and upper_count >= 2
+
+
+class DonutQueue:
+    """ a class that tracks customers as they arrive at the donut shop
+    """
+    def __init__(self) -> None:
+        """ store two queues for ordinary and vip
+        """
+        self.queue = list()
+        self.queue_vip = list()
+
+    def arrive(self, name: str, vip: bool) -> None:
+        """ insert new customer to the related queue
+        """
+        if vip is True:
+            self.queue_vip.insert(0, name)
+        else:
+            self.queue.insert(0, name)
+
+    def next_customer(self) -> Optional[str]:
+        """ return the next customer (pop from the queue)
+        """
+        if len(self.queue_vip) == 0 and len(self.queue) == 0:
+            return None  # retun None if no one in the queues
+
+        # return next customer, vip first
+        return self.queue_vip.pop() if len(self.queue_vip) > 0 else self.queue.pop()
+
+    def waiting(self) -> Optional[str]:
+        """ retun the waiting queue by combining ordinary and vip queues
+        """
+        queue_list: List[str] = []  # to store combined queue
+
+        for vip in self.queue_vip[::-1]:  # vip first
+            queue_list.append(vip)
+        for person in self.queue[::-1]:  # then ordinary
+            queue_list.append(person)
+
+        final_queue: str = ", ".join(queue_list)  # list to string
+
+        return final_queue  # return the queue
