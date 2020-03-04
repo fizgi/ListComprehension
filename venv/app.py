@@ -41,3 +41,23 @@ def remove_vowels(string: str) -> str:
                                 if not word.lower().startswith(('a', 'e', 'i', 'o', 'u'))])
 
     return new_string
+
+def check_pwd(password: str) -> bool:
+    """ a function that takes a string as a parameter,
+        checks the string if it is a valid password
+        and returns a boolean value.
+    """
+    lower_count: int = 0
+    upper_count: int = 0
+    start_digit: bool = False
+
+    if password[0].isdigit():  # should start with a digit
+        start_digit = True
+
+        for char in password:
+            if char.islower():  # 1 lower needed
+                lower_count += 1
+            elif char.isupper():  # 2 upper needed
+                upper_count += 1
+
+    return start_digit and lower_count >= 1 and upper_count >= 2

@@ -8,7 +8,7 @@
 """
 
 import unittest
-from app import list_copy, list_intersect, list_difference, remove_vowels
+from app import list_copy, list_intersect, list_difference, remove_vowels, check_pwd
 
 
 class ListTest(unittest.TestCase):
@@ -36,6 +36,13 @@ class ListTest(unittest.TestCase):
         self.assertTrue(remove_vowels('Jan is my best friend') == "Jan my best friend")
         self.assertTrue(remove_vowels('This is a test string') == "This test string")
         self.assertTrue(remove_vowels('And and Ever ever in In or Or url Url') == "")
+
+    def test_check_pwd(self):
+        """ testing check password """
+        self.assertTrue(check_pwd("1ASd"))
+        self.assertTrue(check_pwd("223dddAS"))
+        self.assertFalse(check_pwd("1aaS"))
+        self.assertFalse(check_pwd("aSS1"))
 
 
 if __name__ == '__main__':
