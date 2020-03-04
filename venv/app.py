@@ -23,7 +23,7 @@ def list_intersect(lst1: List[Any], lst2: List[Any]) -> List[Any]:
     """
     intersection: List[Any] = [item for item in lst1 if item in lst2]
 
-    return intersection
+    return intersection  # return the intersection list
 
 def list_difference(lst1: List[Any], lst2: List[Any]) -> List[Any]:
     """ takes two lists as  parameters and returns
@@ -31,12 +31,13 @@ def list_difference(lst1: List[Any], lst2: List[Any]) -> List[Any]:
     """
     difference: List[Any] = [item for item in lst1 if item not in lst2]
 
-    return difference
+    return difference  # return the difference
 
 def remove_vowels(string: str) -> str:
     """ a function that given a string, splits the string on whitespace into words
         and returns a new string that includes only the words that do NOT begin with vowels
     """
+    # join each word separated by " " after removing the words which do not begin with vowels
     new_string: str = ' '.join([word for word in string.split(" ")
                                 if not word.lower().startswith(('a', 'e', 'i', 'o', 'u'))])
 
@@ -54,10 +55,9 @@ def check_pwd(password: str) -> bool:
     if password[0].isdigit():  # should start with a digit
         start_digit = True
 
-        for char in password:
-            if char.islower():  # 1 lower needed
-                lower_count += 1
-            elif char.isupper():  # 2 upper needed
-                upper_count += 1
+        # then count the lowercase and uppercase letters
+        lower_count: int = sum([i/i for i, char in enumerate(password) if char.islower()])
+        upper_count: int = sum([i/i for i, char in enumerate(password) if char.isupper()])
 
+    # return True when all conditions are met
     return start_digit and lower_count >= 1 and upper_count >= 2
