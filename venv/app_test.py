@@ -1,9 +1,8 @@
 """ Test implementation class of the study
-    which focuses on string methods, slices,
-    working with files, and automated testing
+    which focuses on list comprehension
 
     author: Fatih IZGI
-    date: 21-Feb-2020
+    date: 03-Mar-2020
     version: python 3.8.1
 """
 

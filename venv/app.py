@@ -16,6 +16,7 @@ def list_copy(lst: List[Any]) -> List[Any]:
 
     return copy  # return the copied list
 
+
 def list_intersect(lst1: List[Any], lst2: List[Any]) -> List[Any]:
     """ takes two lists as  parameters and returns
         a new list with the values that are included in both lists
@@ -24,6 +25,7 @@ def list_intersect(lst1: List[Any], lst2: List[Any]) -> List[Any]:
 
     return intersection  # return the intersection list
 
+
 def list_difference(lst1: List[Any], lst2: List[Any]) -> List[Any]:
     """ takes two lists as  parameters and returns
         a new list with the values in list1 that are not included in list2
@@ -31,6 +33,7 @@ def list_difference(lst1: List[Any], lst2: List[Any]) -> List[Any]:
     difference: List[Any] = [item for item in lst1 if item not in lst2]
 
     return difference  # return the difference
+
 
 def remove_vowels(string: str) -> str:
     """ a function that given a string, splits the string on whitespace into words
@@ -41,6 +44,7 @@ def remove_vowels(string: str) -> str:
                                 if not word.lower().startswith(('a', 'e', 'i', 'o', 'u'))])
 
     return new_string
+
 
 def check_pwd(password: str) -> bool:
     """ a function that takes a string as a parameter,
@@ -83,13 +87,13 @@ class DonutQueue:
         """ return the next customer (pop from the queue)
         """
         if len(self.queue_vip) == 0 and len(self.queue) == 0:
-            return None  # retun None if no one in the queues
+            return None  # return None if no one in the queues
 
         # return next customer, vip first
         return self.queue_vip.pop() if len(self.queue_vip) > 0 else self.queue.pop()
 
     def waiting(self) -> Optional[str]:
-        """ retun the waiting queue by combining ordinary and vip queues
+        """ return the waiting queue by combining ordinary and vip queues
         """
         queue_list: List[str] = []  # to store combined queue
 
